@@ -3,135 +3,95 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ŞäherMarket — Super Admin Panel</title>
+  <title>ŞäherMarket — Super Admin PRO</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#090d16;--card:#131b2c;--soft:#1c2740;--ink:#f8fafc;--sub:#94a3b8;--border:rgba(255,255,255,.09);--accent:#10b981;--grad:linear-gradient(135deg,#6366f1,#10b981)}
+    :root{--bg:#060a13;--card:#121c30;--soft:#1b2842;--ink:#f8fafc;--sub:#94a3b8;--border:rgba(148,163,184,.14);--grad:linear-gradient(135deg,#6366f1,#10b981)}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{min-height:100vh;background:radial-gradient(circle at top left,#1e1b4b,#090d16 55%);color:var(--ink);font-family:"Plus Jakarta Sans",sans-serif;font-size:14px}
+    body{min-height:100vh;background:radial-gradient(circle at top left,#1e1b4b,#060a13 55%);color:var(--ink);font-family:"Plus Jakarta Sans",sans-serif;font-size:13.5px}
     button,input,select{font-family:inherit;color:inherit}
-    .wrap{max-width:1040px;margin:0 auto;padding:20px 16px 80px}
-    .login-box{max-width:380px;margin:14vh auto;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:26px}
-    .field{margin-top:12px}.field label{display:block;font-size:12px;font-weight:700;color:#cbd5e1;margin-bottom:5px}
-    .field input,.field select{width:100%;background:#0b1120;border:1.5px solid var(--border);border-radius:12px;padding:11px;font-size:13.5px;color:#fff;outline:none}
-    .btn{width:100%;height:44px;margin-top:14px;border:none;border-radius:12px;background:var(--grad);color:#fff;font-weight:800;cursor:pointer}
-    .top{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:15px 18px;margin-bottom:16px;flex-wrap:wrap;gap:10px}
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
-    .stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px}
-    .stat .v{font-size:22px;font-weight:800;margin-top:4px}
+    .wrap{max-width:1120px;margin:0 auto;padding:20px 16px 80px}
+    .login-box{max-width:380px;margin:14vh auto;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:26px}
+    .field{margin-top:11px}.field label{display:block;font-size:12px;font-weight:700;color:#cbd5e1;margin-bottom:4px}
+    .field input,.field select{width:100%;background:#090f1d;border:1.5px solid var(--border);border-radius:11px;padding:10px;color:#fff;outline:none}
+    .btn{width:100%;height:42px;margin-top:13px;border:none;border-radius:11px;background:var(--grad);color:#fff;font-weight:800;cursor:pointer}
+    .top{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px 18px;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+    .stat{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:14px}.stat .v{font-size:22px;font-weight:800;margin-top:4px}
     .tabs{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto}
-    .tab{border:1px solid var(--border);background:var(--card);border-radius:12px;padding:9px 15px;font-weight:800;color:var(--sub);cursor:pointer;white-space:nowrap}
+    .tab{border:1px solid var(--border);background:var(--card);border-radius:11px;padding:9px 14px;font-weight:800;color:var(--sub);cursor:pointer;white-space:nowrap}
     .tab.active{background:var(--grad);border-color:transparent;color:#fff}
-    .box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:12px}
-    .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-    .item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
+    .box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px}
+    .item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
     .item:last-child{border-bottom:none}
-    .pill{font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;background:rgba(16,185,129,.18);color:#34d399}
-    .sm-btn{border:none;border-radius:9px;padding:7px 11px;font-size:11.5px;font-weight:800;cursor:pointer;background:var(--soft)}
-    .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#10b981;color:#fff;padding:10px 18px;border-radius:999px;font-weight:800;display:none}
-    .toast.show{display:block}
-    @media(max-width:640px){.stats{grid-template-columns:1fr 1fr}.row2,.row3{grid-template-columns:1fr}}
+    .sm-btn{border:none;border-radius:9px;padding:7px 11px;font-size:11.5px;font-weight:800;cursor:pointer;background:var(--soft);color:#fff}
+    .sm-btn.ok{background:rgba(16,185,129,.22);color:#34d399}.sm-btn.del{background:rgba(239,68,68,.2);color:#fca5a5}
+    .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#10b981;color:#fff;padding:10px 18px;border-radius:999px;font-weight:800;display:none}.toast.show{display:block}
+    @media(max-width:640px){.stats{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
-  <div id="root"></div>
-  <div class="toast" id="toast"></div>
+  <div id="root"></div><div class="toast" id="toast"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     (function(){
-      const CONFIG = {
-        SUPABASE_URL: 'https://zkypuqmwovjuuplirzig.supabase.co',
-        SUPABASE_ANON_KEY: 'sb_publishable_Rhlt7E7dYumty3PpE6Sp6Q_AzkHOp-l',
-        ADMIN_PIN: '2026' // Özüňiz üçin gizlin Admin PIN kody
-      };
+      const CONFIG = { SUPABASE_URL:'https://zkypuqmwovjuuplirzig.supabase.co', SUPABASE_ANON_KEY:'sb_publishable_Rhlt7E7dYumty3PpE6Sp6Q_AzkHOp-l', ADMIN_PIN:'2026' };
       const sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
-      const st = { authed: sessionStorage.getItem('sm_admin_ok') === '1', tab:'overview', stores:[], orders:[], coupons:[] };
+      const st = { authed: sessionStorage.getItem('sm_admin_ok')==='1', tab:'apps', stores:[], orders:[], apps:[], tickets:[] };
       const esc = s => String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
       const fmt = v => Number(v||0).toLocaleString('tr-TR') + ' m.';
       function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2300); }
 
       async function loadAll(){
-        const [sR, oR, cR] = await Promise.all([
-          sb.from('stores').select('*').order('created_at',{ascending:false}),
-          sb.from('orders').select('*').order('created_at',{ascending:false}).limit(100),
-          sb.from('coupons').select('*').is('store_id', null)
+        const [sR, oR, aR, tR] = await Promise.all([
+          sb.from('stores').select('*'), sb.from('orders').select('*').order('created_at',{ascending:false}).limit(100),
+          sb.from('store_applications').select('*').order('created_at',{ascending:false}),
+          sb.from('support_tickets').select('*').order('created_at',{ascending:false})
         ]);
-        if(sR.data) st.stores = sR.data;
-        if(oR.data) st.orders = oR.data;
-        if(cR.data) st.coupons = cR.data;
+        st.stores=sR.data||[]; st.orders=oR.data||[]; st.apps=aR.data||[]; st.tickets=tR.data||[];
         render();
       }
 
       function render(){
-        if(!st.authed){
-          document.getElementById('root').innerHTML = '<div class="login-box"><h2 style="font-size:20px;font-weight:800;">🛡️ Super Admin Panel</h2><p style="font-size:12px;color:var(--sub);margin-top:4px;">Ähli şäher dükanlaryny we sargytlaryny dolandyrmak üçin PIN giriň (standart: 2026).</p><form id="pinForm"><div class="field"><label>Admin PIN</label><input type="password" id="pinInp" required placeholder="••••" /></div><button class="btn" type="submit">Giriş →</button></form></div>';
-          return;
-        }
-        const totalRev = st.orders.filter(o=>o.status!=='cancelled').reduce((a,o)=>a+Number(o.total||0),0);
-        const todayOrd = st.orders.filter(o=>(Date.now()-new Date(o.created_at).getTime())<=86400000).length;
-
+        if (!st.authed) { document.getElementById('root').innerHTML = '<div class="login-box"><h2>🛡️ Super Admin PRO</h2><form id="pinForm"><div class="field"><label>Admin PIN (standart: 2026)</label><input type="password" id="pinInp" required /></div><button class="btn" type="submit">Giriş →</button></form></div>'; return; }
+        const rev = st.orders.filter(o=>o.status!=='cancelled').reduce((a,o)=>a+Number(o.total||0),0);
         let body = '';
-        if(st.tab === 'overview'){
-          body = '<div class="box"><h3 style="margin-bottom:8px;">📦 Şäher boýunça soňky sargytlar</h3>' +
-            (st.orders.length ? st.orders.slice(0,25).map(o=>'<div class="item"><div><strong>' + esc(o.code) + '</strong> • ' + esc(o.store_name||o.store_id) + '<div style="font-size:11.5px;color:var(--sub);">' + esc(o.customer_name) + ' • ' + esc(o.address) + '</div></div><div style="text-align:right;"><strong>' + fmt(o.total) + '</strong><div><span class="pill">' + esc(o.status) + '</span></div></div></div>').join('') : '<div style="color:var(--sub);">Entek sargyt ýok.</div>') + '</div>';
-        } else if(st.tab === 'stores'){
-          body = '<form id="newStoreForm" class="box"><h3 style="margin-bottom:6px;">➕ Täze dükan goş</h3>' +
-              '<div class="row3"><div class="field"><label>ID (kiçi harp) *</label><input id="nsId" required placeholder="shatlyk_market" /></div><div class="field"><label>Dükanyň ady *</label><input id="nsName" required placeholder="Şatlyk Market" /></div><div class="field"><label>Eýesiniň e-poçtasy *</label><input id="nsEmail" type="email" required placeholder="shatlyk@sahermarket.tm" /></div></div>' +
-              '<div class="row3"><div class="field"><label>Görnüşi</label><select id="nsType"><option value="food">Tagamlar</option><option value="market">Market</option><option value="shop">Dükan</option></select></div><div class="field"><label>Emoji</label><input id="nsEmoji" value="🏪" /></div><div class="field"><label>Telefon</label><input id="nsPhone" placeholder="+993 65 ..." /></div></div>' +
-              '<button class="btn" type="submit">Dükany döret ✓</button></form>' +
-            '<div class="box"><h3 style="margin-bottom:8px;">🏪 Ähli dükanlar (' + st.stores.length + ')</h3>' +
-              st.stores.map(s=>'<div class="item"><div><strong>' + (s.emoji||'🏪') + ' ' + esc(s.name) + '</strong> <small style="color:var(--sub);">(' + esc(s.id) + ')</small><div style="font-size:11.5px;color:var(--sub);">' + esc(s.owner_email) + ' • ' + (s.is_open!==false?'🟢 Açyk':'🔴 Ýapyk') + '</div></div><button type="button" class="sm-btn" data-feat="' + esc(s.id) + '" data-cur="' + (s.is_featured?'1':'0') + '">' + (s.is_featured?'⭐ Öňe çykarylan':'☆ Öňe çykar') + '</button></div>').join('') + '</div>';
-        } else if(st.tab === 'coupons'){
-          body = '<form id="gCouponForm" class="box"><h3 style="margin-bottom:6px;">🎟️ Ähli şäher üçin umumy kupon</h3><div class="row3"><div class="field"><label>Kod *</label><input id="gcCode" required placeholder="BAHAR25" style="text-transform:uppercase;" /></div><div class="field"><label>Arzanladyş (%)</label><input id="gcPct" type="number" value="15" /></div><div class="field"><label>Min. sebet (m.)</label><input id="gcMin" type="number" value="50" /></div></div><button class="btn" type="submit">Umumy kupon döret ✓</button></form>' +
-            '<div class="box">' + (st.coupons.length ? st.coupons.map(c=>'<div class="item"><strong>' + esc(c.code) + ' (-' + c.percent + '%)</strong><button type="button" class="sm-btn" style="color:#fca5a5;" data-del-gc="' + c.id + '">Poz</button></div>').join('') : '<div style="color:var(--sub);">Umumy kupon ýok.</div>') + '</div>';
+        if (st.tab==='apps') {
+          body = '<div class="box"><h3 style="margin-bottom:8px;">📝 Täze Dükan Ýüz Tutmalary (' + st.apps.length + ')</h3>' +
+            (st.apps.length ? st.apps.map(a=>'<div class="item"><div><b>' + esc(a.store_name) + '</b> (' + esc(a.city) + ' • ' + esc(a.type) + ')<div style="font-size:11.5px;color:var(--sub);">' + esc(a.owner_email) + ' • ' + esc(a.phone) + '</div></div><div style="display:flex;gap:6px;">' + (a.status==='pending' ? '<button class="sm-btn ok" data-app-ok="' + a.id + '">✓ Tassykla</button><button class="sm-btn del" data-app-no="' + a.id + '">✕ Ret et</button>' : '<span class="sm-btn">' + esc(a.status) + '</span>') + '</div></div>').join('') : '<div style="color:var(--sub);">Garaşýan ýüz tutma ýok.</div>') + '</div>';
+        } else if (st.tab==='stores') {
+          body = '<div class="box"><h3 style="margin-bottom:8px;">🏪 Dükanlar, Komissiýa we Sponsorly Witrina</h3>' +
+            st.stores.map(s=>'<div class="item"><div><b>' + (s.emoji||'🏪') + ' ' + esc(s.name) + '</b> <small style="color:var(--sub);">(' + esc(s.city||'Aşgabat') + ' • Komissiýa: ' + (s.commission_rate||5) + '%)</small><div style="font-size:11px;color:var(--sub);">' + esc(s.owner_email) + '</div></div><div style="display:flex;gap:6px;"><button class="sm-btn ok" data-feat="' + esc(s.id) + '" data-cur="' + (s.is_featured?'1':'0') + '">' + (s.is_featured?'⭐ Sponsorly':'☆ Öňe çykar') + '</button><button class="sm-btn" data-comm="' + esc(s.id) + '" data-curc="' + (s.commission_rate||5) + '">% Komissiýa</button></div></div>').join('') + '</div>';
+        } else if (st.tab==='tickets') {
+          body = '<div class="box"><h3 style="margin-bottom:8px;">🎧 Müşderi Şikaýat / Goldaw Biletleri</h3>' +
+            (st.tickets.length ? st.tickets.map(t=>'<div class="item"><div><b>' + esc(t.order_code||'Umumy') + '</b> • ' + esc(t.customer_name) + ' (' + esc(t.customer_phone) + ')<div style="margin-top:3px;">' + esc(t.message) + '</div></div><button class="sm-btn ok" data-res-tk="' + t.id + '">' + (t.status==='resolved'?'✓ Çözüldi':'Çözüldi diýip belle') + '</button></div>').join('') : '<div style="color:var(--sub);">Açyk bilet ýok.</div>') + '</div>';
         }
 
-        document.getElementById('root').innerHTML = '<div class="wrap">' +
-          '<div class="top"><div><h2 style="font-size:19px;font-weight:800;">🛡️ ŞäherMarket Super Admin</h2><div style="font-size:11.5px;color:var(--sub);">Şäher platformasynyň doly gözegçiligi</div></div><div style="display:flex;gap:8px;"><button class="sm-btn" id="refBtn">🔄 Täzele</button><button class="sm-btn" id="outBtn">Çykyş</button></div></div>' +
-          '<div class="stats">' +
-            '<div class="stat"><div style="font-size:11px;color:var(--sub);">Ähli dükanlar</div><div class="v">' + st.stores.length + '</div></div>' +
-            '<div class="stat"><div style="font-size:11px;color:var(--sub);">Şu günki sargyt</div><div class="v" style="color:#fb923c;">' + todayOrd + '</div></div>' +
-            '<div class="stat"><div style="font-size:11px;color:var(--sub);">Jemi sargyt</div><div class="v">' + st.orders.length + '</div></div>' +
-            '<div class="stat"><div style="font-size:11px;color:var(--sub);">Umumy dolanyşyk</div><div class="v" style="color:#34d399;">' + fmt(totalRev) + '</div></div>' +
-          '</div>' +
-          '<div class="tabs"><button class="tab' + (st.tab==='overview'?' active':'') + '" data-t="overview">📦 Sargytlar</button><button class="tab' + (st.tab==='stores'?' active':'') + '" data-t="stores">🏪 Dükanlar</button><button class="tab' + (st.tab==='coupons'?' active':'') + '" data-t="coupons">🎟️ Umumy kuponlar</button></div>' +
-          body + '</div>';
+        document.getElementById('root').innerHTML = '<div class="wrap"><div class="top"><div><h2>🛡️ ŞäherMarket Super Admin PRO</h2></div><div style="display:flex;gap:8px;"><button class="sm-btn" id="cityRainBtn">🌧️ Ähli şäherde Ýagyş tertibi</button><button class="sm-btn" id="refBtn">🔄 Täzele</button><button class="sm-btn del" id="outBtn">Çykyş</button></div></div>' +
+          '<div class="stats"><div class="stat"><div style="font-size:11px;color:var(--sub);">Dükanlar</div><div class="v">' + st.stores.length + '</div></div><div class="stat"><div style="font-size:11px;color:var(--sub);">Garaşýan ýüz tutma</div><div class="v" style="color:#fb923c;">' + st.apps.filter(x=>x.status==='pending').length + '</div></div><div class="stat"><div style="font-size:11px;color:var(--sub);">Goldaw bileti</div><div class="v" style="color:#60a5fa;">' + st.tickets.filter(x=>x.status!=='resolved').length + '</div></div><div class="stat"><div style="font-size:11px;color:var(--sub);">Umumy dolanyşyk</div><div class="v" style="color:#34d399;">' + fmt(rev) + '</div></div></div>' +
+          '<div class="tabs"><button class="tab' + (st.tab==='apps'?' active':'') + '" data-t="apps">📝 Dükan Ýüz Tutmalary</button><button class="tab' + (st.tab==='stores'?' active':'') + '" data-t="stores">🏪 Dükanlar & Komissiýa</button><button class="tab' + (st.tab==='tickets'?' active':'') + '" data-t="tickets">🎧 Goldaw Biletleri</button></div>' + body + '</div>';
       }
 
-      document.getElementById('root').addEventListener('submit', async e => {
-        e.preventDefault();
-        if(e.target.id === 'pinForm'){
-          if(document.getElementById('pinInp').value === CONFIG.ADMIN_PIN){ st.authed = true; sessionStorage.setItem('sm_admin_ok','1'); loadAll(); }
-          else toast('Nädogry PIN!');
-        } else if(e.target.id === 'newStoreForm'){
-          const { error } = await sb.from('stores').insert([{
-            id: document.getElementById('nsId').value.trim().toLowerCase().replace(/\s+/g,'_'),
-            name: document.getElementById('nsName').value.trim(),
-            owner_email: document.getElementById('nsEmail').value.trim().toLowerCase(),
-            type: document.getElementById('nsType').value,
-            emoji: document.getElementById('nsEmoji').value.trim() || '🏪',
-            phone: document.getElementById('nsPhone').value.trim(),
-            is_open: true
-          }]);
-          if(error) toast('Ýalňyşlyk: ' + error.message); else { toast('Dükan goşuldy ✓'); loadAll(); }
-        } else if(e.target.id === 'gCouponForm'){
-          await sb.from('coupons').insert([{ store_id:null, code:document.getElementById('gcCode').value.trim().toUpperCase(), percent:Number(document.getElementById('gcPct').value), min_order:Number(document.getElementById('gcMin').value||0), active:true }]);
-          toast('Umumy kupon döredildi ✓'); loadAll();
-        }
-      });
-
+      document.getElementById('root').addEventListener('submit', e => { e.preventDefault(); if (e.target.id==='pinForm') { if (document.getElementById('pinInp').value === CONFIG.ADMIN_PIN) { st.authed=true; sessionStorage.setItem('sm_admin_ok','1'); loadAll(); } else toast('Nädogry PIN'); } });
       document.getElementById('root').addEventListener('click', async e => {
         const el = s => e.target.closest(s);
-        if(el('[data-t]')){ st.tab = el('[data-t]').getAttribute('data-t'); render(); return; }
-        if(el('#refBtn')){ loadAll(); toast('Täzelendi'); return; }
-        if(el('#outBtn')){ st.authed = false; sessionStorage.removeItem('sm_admin_ok'); render(); return; }
-        if(el('[data-feat]')){ const b = el('[data-feat]'); await sb.from('stores').update({ is_featured: b.getAttribute('data-cur') !== '1' }).eq('id', b.getAttribute('data-feat')); loadAll(); return; }
-        if(el('[data-del-gc]')){ await sb.from('coupons').delete().eq('id', el('[data-del-gc]').getAttribute('data-del-gc')); loadAll(); }
+        if (el('[data-t]')) { st.tab = el('[data-t]').getAttribute('data-t'); render(); return; }
+        if (el('#refBtn')) { loadAll(); return; }
+        if (el('#outBtn')) { st.authed=false; sessionStorage.removeItem('sm_admin_ok'); render(); return; }
+        if (el('#cityRainBtn')) { await sb.from('stores').update({ weather_mode: true }).neq('id', ''); toast('🌧️ Ähli şäherde Ýagyş tertibi (+15 min) açyldy!'); loadAll(); return; }
+        if (el('[data-app-ok]')) {
+          const a = st.apps.find(x=>String(x.id)===el('[data-app-ok]').getAttribute('data-app-ok')); if(!a)return;
+          const sid = a.store_name.toLowerCase().replace(/[^a-z0-9]/g,'_') + '_' + Math.floor(10+Math.random()*89);
+          await sb.from('stores').insert([{ id:sid, name:a.store_name, owner_email:a.owner_email, phone:a.phone, city:a.city, type:a.type, is_open:true }]);
+          await sb.from('store_applications').update({ status:'approved' }).eq('id', a.id);
+          toast('Dükan tassyklandy ✓'); loadAll(); return;
+        }
+        if (el('[data-app-no]')) { await sb.from('store_applications').update({ status:'rejected' }).eq('id', el('[data-app-no]').getAttribute('data-app-no')); loadAll(); return; }
+        if (el('[data-feat]')) { const b=el('[data-feat]'); await sb.from('stores').update({ is_featured: b.getAttribute('data-cur')!=='1' }).eq('id', b.getAttribute('data-feat')); loadAll(); return; }
+        if (el('[data-comm]')) { const b=el('[data-comm]'); const nc = Number(prompt('Täze komissiýa (%):', b.getAttribute('data-curc'))); if(!isNaN(nc)){ await sb.from('stores').update({ commission_rate: nc }).eq('id', b.getAttribute('data-comm')); loadAll(); } return; }
+        if (el('[data-res-tk]')) { await sb.from('support_tickets').update({ status:'resolved' }).eq('id', el('[data-res-tk]').getAttribute('data-res-tk')); toast('Bilet çözüldi ✓'); loadAll(); }
       });
-
-      render();
-      if(st.authed) loadAll();
+      render(); if (st.authed) loadAll();
     })();
   </script>
 </body>
